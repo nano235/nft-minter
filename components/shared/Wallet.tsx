@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAccount, useDisconnect, useEnsName } from "wagmi";
 import { WalletContainer } from ".";
 import useIsMounted from "@/hook/useIsMounted";
+import { toast } from "react-toastify";
+import { CHAIN_ID } from "@/config";
 
 export default function Wallet() {
-	const mounted = useIsMounted();
 	const { isConnected } = useAccount();
-	if (!mounted) return null;
 
 	return isConnected ? <Account /> : <ConnectWallet />;
 }
